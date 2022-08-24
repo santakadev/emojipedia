@@ -1,7 +1,7 @@
 import puppeteer from "puppeteer";
 import * as fs from "fs";
 
-const run = async () => {
+const emojipedia = async () => {
     const browser = await puppeteer.launch({
         headless: false,
         args: ["--disable-setuid-sandbox"],
@@ -32,15 +32,19 @@ const run = async () => {
         return emojis; 
     };
 
-    const writer = fs.createWriteStream("/home/dani/emojis.txt");
+    let allEmojis = [];
     for (const url of urls) {
         const emojis = await getEmojis(browser, url);
-        emojis.forEach(emoji => writer.write(`${emoji}\n`));
+        allEmojis = allEmojis.concat(emojis);
     }
 
-    writer.close();
     await browser.close();
+
+    return allEmojis;
 };
 
 
-run();
+const emojis = await emojipedia();
+const writer = fs.createWriteStream("/home/dani/emojis.txt");
+emojis.forEach(emoji => writer.write(`${emoji}\n`));
+writer.close();
