@@ -5,11 +5,16 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "puppeteer": "^16.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.22.0"
   }
 }
