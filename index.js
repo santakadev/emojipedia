@@ -20,7 +20,7 @@ export const all = async () => {
  
     const getEmojis = async (browser, url) => {
         let page = await browser.newPage();
-        console.log(`Navigating to ${url}...`);
+        console.log(`Downloading emojis from ${url}...`);
         await page.goto(url);
         await page.waitForSelector(".emoji-list");
 
