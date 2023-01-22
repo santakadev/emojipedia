@@ -24,7 +24,7 @@ export const all = async () => {
         await page.goto(url);
         await page.waitForSelector(".emoji-list");
 
-        const emojis = await page.$$eval("ul.emoji-list > li", links => {
+        const emojis = await page.$$eval("ul.emoji-list > li:not(.emo-flow-ad)", links => {
             links = links.map(el => el.querySelector("a").textContent);
             return links;
         });
